@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blog post by Ratna Jagadeesh Arava">
+  <title>Post — Ratna Jagadeesh Arava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+<div id="toast-container"></div>
+<div id="cmd-palette" class="cmd-overlay">
+  <div class="cmd-box">
+    <div class="cmd-input-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="cmd-input" placeholder="Search…" autocomplete="off">
+      <span class="cmd-esc">ESC</span>
+    </div>
+    <div id="cmd-results" class="cmd-results"></div>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Jagadeesh</a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html#about"      class="nav-link">About</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#projects"   class="nav-link">Projects</a>
+      <a href="blog.html"             class="nav-link active">Blog</a>
+      <a href="index.html#skills"     class="nav-link">Skills</a>
+      <a href="index.html#contact"    class="nav-link">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme"></button>
+      <button id="cmd-trigger" class="icon-btn" aria-label="Search" style="font-size:10px;color:var(--text-muted);gap:4px;width:auto;padding:0 .6rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span style="font-size:11px;font-weight:500">⌘K</span>
+      </button>
+      <button id="nav-toggle" class="icon-btn hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<main class="post-page">
+  <!-- Post Header -->
+  <div class="post-header container reveal">
+    <!-- Breadcrumb -->
+    <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:1.5rem">
+      <a href="index.html" style="color:var(--text-dim);transition:color .2s" onmouseover="this.style.color='var(--text-muted)'" onmouseout="this.style.color='var(--text-dim)'">Home</a>
+      <span style="margin:0 .5rem">›</span>
+      <a href="blog.html" style="color:var(--text-dim);transition:color .2s" onmouseover="this.style.color='var(--text-muted)'" onmouseout="this.style.color='var(--text-dim)'">Blog</a>
+      <span style="margin:0 .5rem">›</span>
+      <span id="breadcrumb-title" style="color:var(--text-muted)">Loading…</span>
+    </p>
+
+    <div id="post-meta" class="post-meta"></div>
+    <h1 id="post-title" class="post-title">Loading post…</h1>
+    <p id="post-excerpt" class="post-excerpt"></p>
+
+    <!-- Share row -->
+    <div style="display:flex;gap:.75rem;margin-top:1.75rem;flex-wrap:wrap">
+      <button onclick="navigator.clipboard.writeText(location.href).then(()=>showToast&&showToast('Link copied!','success'))" class="btn btn-outline" style="font-size:.8rem;padding:.45rem .9rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        Copy link
+      </button>
+      <a id="twitter-share" href="#" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.8rem;padding:.45rem .9rem">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Share
+      </a>
+    </div>
+  </div>
+
+  <!-- Post Layout: Content + ToC -->
+  <div class="post-layout container">
+    <article id="post-content" class="post-content"></article>
+    <aside>
+      <nav class="toc" aria-label="Table of contents">
+        <p class="toc-title">On this page</p>
+        <div id="toc-list" class="toc-list"></div>
+      </nav>
+      <!-- Author Card -->
+      <div style="margin-top:1.25rem;padding:1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg)">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem">
+          <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🧑‍💻</div>
+          <div>
+            <p style="font-size:.85rem;font-weight:700;color:var(--text)">Ratna Jagadeesh</p>
+            <p style="font-size:.75rem;color:var(--text-dim)">Software Developer</p>
+          </div>
+        </div>
+        <p style="font-size:.8rem;color:var(--text-muted);line-height:1.6;margin-bottom:.75rem">Systems, Graphics &amp; Web. Writing about the things I'm building and learning.</p>
+        <a href="https://github.com/ratnajagadeesharava" target="_blank" rel="noopener" style="font-size:.78rem;color:var(--accent);font-weight:500">Follow on GitHub →</a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Post Nav -->
+  <div id="post-nav" class="container"></div>
+</main>
+
+<!-- Footer -->
+<footer style="margin-top:2rem">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">Jagadeesh</a>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Ratna Jagadeesh Arava</p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- marked.js for Markdown rendering -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  // Configure marked
+  if (typeof marked !== 'undefined') {
+    marked.setOptions({ breaks: true, gfm: true });
+  }
+  // Set twitter share on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const twitterBtn = document.getElementById('twitter-share');
+    const title = document.getElementById('post-title');
+    if (twitterBtn && title) {
+      setTimeout(() => {
+        const text = encodeURIComponent(title.textContent + ' — by @ratnajagadeesh');
+        const url = encodeURIComponent(location.href);
+        twitterBtn.href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+      }, 1000);
+    }
+    // Set breadcrumb
+    setTimeout(() => {
+      const bc = document.getElementById('breadcrumb-title');
+      const t = document.getElementById('post-title');
+      if (bc && t && t.textContent !== 'Loading post…') {
+        bc.textContent = t.textContent.length > 40 ? t.textContent.slice(0, 40) + '…' : t.textContent;
+      }
+    }, 1500);
+  });
+</script>
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>
