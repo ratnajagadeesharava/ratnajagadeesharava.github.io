@@ -9,12 +9,49 @@
   <meta property="og:description" content="Systems, Graphics & Web. Building things fast, correct, and clear.">
   <meta property="og:type" content="website">
   <title>Ratna Jagadeesh Arava</title>
+  <link rel="canonical" href="https://ratnajagadeesharava.github.io/">
+  <meta property="og:url" content="https://ratnajagadeesharava.github.io/">
+  <meta property="og:site_name" content="Ratna Jagadeesh Arava">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ratna Jagadeesh Arava — Software Developer">
+  <meta name="twitter:description" content="Systems, Graphics &amp; Web. Building things fast, correct, and clear.">
+  <meta name="author" content="Ratna Jagadeesh Arava">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ratna Jagadeesh Arava",
+    "url": "https://ratnajagadeesharava.github.io/",
+    "jobTitle": "Software Developer",
+    "worksFor": { "@type": "Organization", "name": "Chalo" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "IIT Bhubaneswar" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
+    "knowsAbout": ["Rust", "C++", "Computer Graphics", "Systems Programming", "Angular", "React"],
+    "sameAs": [
+      "https://github.com/ratnajagadeesharava",
+      "https://www.linkedin.com/in/ratna-jagadeesh-arava/"
+    ]
+  }
+  </script>
+  <meta name="theme-color" content="#08080f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8f8fc" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    // Apply the saved (or system) theme before first paint to avoid a flash
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- Scroll Progress -->
 <div id="scroll-progress"></div>
@@ -23,19 +60,19 @@
 <div id="toast-container"></div>
 
 <!-- Command Palette -->
-<div id="cmd-palette" class="cmd-overlay" role="dialog" aria-label="Command palette">
+<div id="cmd-palette" class="cmd-overlay" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
   <div class="cmd-box">
     <div class="cmd-input-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="cmd-input" placeholder="Search pages, posts, actions…" autocomplete="off" spellcheck="false">
+      <input type="text" id="cmd-input" aria-label="Search the site" placeholder="Search pages, posts, actions…" autocomplete="off" spellcheck="false">
       <span class="cmd-esc">ESC</span>
     </div>
-    <div id="cmd-results" class="cmd-results"></div>
+    <div id="cmd-results" class="cmd-results" role="listbox"></div>
   </div>
 </div>
 
 <!-- Navigation -->
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">Jagadeesh</a>
     <div class="nav-links" id="nav-links">
@@ -50,9 +87,9 @@
       <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
         <!-- Icon injected by JS -->
       </button>
-      <button id="cmd-trigger" class="icon-btn" aria-label="Command palette" title="Search (⌘K)" style="font-size:10px;color:var(--text-muted);gap:4px;width:auto;padding:0 .6rem">
+      <button id="cmd-trigger" class="icon-btn cmd-trigger" aria-label="Open command palette" title="Search">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <span style="font-size:11px;font-weight:500">⌘K</span>
+        <span class="cmd-kbd">⌘K</span>
       </button>
       <button id="nav-toggle" class="icon-btn hamburger" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -61,9 +98,10 @@
   </div>
 </nav>
 
+<main id="main">
 <!-- ══════════════════ HERO ══════════════════ -->
 <section id="hero">
-  <div class="hero-bg">
+  <div class="hero-bg" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
@@ -134,7 +172,7 @@
     </div>
     <div class="about-grid">
       <div class="reveal reveal-delay-1">
-        <div class="about-avatar">🧑‍💻</div>
+        <div class="about-avatar" aria-hidden="true">🧑‍💻</div>
         <div class="about-text">
           <p>Software Developer with <strong>5+ years</strong> of experience building production systems across the stack. Currently at <strong>Chalo</strong> — India's leading public transport platform — where I build scalable systems that move millions of commuters.</p>
           <p>Previously at <strong>Brane Enterprises</strong>, where I led frontend architecture for industrial analytics dashboards and spent three months prototyping a <strong>custom game engine</strong> in C++ and OpenGL — one of the most technically rewarding projects I've worked on.</p>
@@ -258,9 +296,9 @@
       <p class="section-desc">Fetched live from GitHub. Sorted by recent activity.</p>
     </div>
     <div class="filter-bar" id="filter-bar">
-      <button class="filter-btn active" data-lang="all">All</button>
+      <button class="filter-btn active" data-lang="all" aria-pressed="true">All</button>
     </div>
-    <div id="projects-grid" class="projects-grid">
+    <div id="projects-grid" class="projects-grid" aria-live="polite">
       <div class="projects-loading">
         <div class="spinner"></div>
         <p>Loading repositories…</p>
@@ -304,13 +342,14 @@
       </span>
       <h2 class="section-title">Tech Stack</h2>
     </div>
-    <div class="skills-tabs reveal">
-      <button class="tab-btn active" data-tab="languages">Languages</button>
-      <button class="tab-btn" data-tab="frontend">Frontend</button>
-      <button class="tab-btn" data-tab="graphics">Graphics &amp; Engines</button>
-      <button class="tab-btn" data-tab="tools">Tools &amp; Infra</button>
+    <div class="skills-tabs reveal" role="tablist" aria-label="Skill categories">
+      <button class="tab-btn active" data-tab="languages" role="tab" aria-selected="true" aria-controls="skills-languages">Languages</button>
+      <button class="tab-btn" data-tab="frontend" role="tab" aria-selected="false" aria-controls="skills-frontend">Frontend</button>
+      <button class="tab-btn" data-tab="graphics" role="tab" aria-selected="false" aria-controls="skills-graphics">Graphics &amp; Engines</button>
+      <button class="tab-btn" data-tab="tools" role="tab" aria-selected="false" aria-controls="skills-tools">Tools &amp; Infra</button>
     </div>
-    <div id="skills-languages" class="skills-panel active reveal">
+    <div class="reveal">
+    <div id="skills-languages" class="skills-panel active" role="tabpanel">
       <span class="skill-tag">Rust</span>
       <span class="skill-tag">C++</span>
       <span class="skill-tag">C</span>
@@ -320,7 +359,7 @@
       <span class="skill-tag">C#</span>
       <span class="skill-tag">GLSL</span>
     </div>
-    <div id="skills-frontend" class="skills-panel reveal">
+    <div id="skills-frontend" class="skills-panel" role="tabpanel" hidden>
       <span class="skill-tag">Angular</span>
       <span class="skill-tag">React</span>
       <span class="skill-tag">RxJS</span>
@@ -331,7 +370,7 @@
       <span class="skill-tag">NgRx</span>
       <span class="skill-tag">D3.js</span>
     </div>
-    <div id="skills-graphics" class="skills-panel reveal">
+    <div id="skills-graphics" class="skills-panel" role="tabpanel" hidden>
       <span class="skill-tag">OpenGL</span>
       <span class="skill-tag">Ray Tracing</span>
       <span class="skill-tag">Unity3D</span>
@@ -342,7 +381,7 @@
       <span class="skill-tag">HoloLens / AR</span>
       <span class="skill-tag">BVH / Scene Graphs</span>
     </div>
-    <div id="skills-tools" class="skills-panel reveal">
+    <div id="skills-tools" class="skills-panel" role="tabpanel" hidden>
       <span class="skill-tag">Git</span>
       <span class="skill-tag">Cypress</span>
       <span class="skill-tag">Cucumber / BDD</span>
@@ -351,6 +390,7 @@
       <span class="skill-tag">Linux</span>
       <span class="skill-tag">VS Code</span>
       <span class="skill-tag">Cargo / npm</span>
+    </div>
     </div>
   </div>
 </section>
@@ -432,6 +472,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer>
   <div class="container">
@@ -445,7 +487,7 @@
         <a href="#contact">Contact</a>
         <a href="https://github.com/ratnajagadeesharava" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <p class="footer-copy">&copy; 2026 Ratna Jagadeesh Arava</p>
+      <p class="footer-copy">&copy; <span class="footer-year">2026</span> Ratna Jagadeesh Arava</p>
     </div>
   </div>
 </footer>
@@ -455,6 +497,6 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>

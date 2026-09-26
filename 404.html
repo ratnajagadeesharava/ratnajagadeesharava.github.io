@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Page not found — Ratna Jagadeesh Arava</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Absolute paths: GitHub Pages serves this file for missing URLs at any depth -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<main id="main" class="not-found">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="not-found-content">
+    <p class="not-found-code">404</p>
+    <h1 class="section-title">This page doesn't exist</h1>
+    <p class="section-desc">The link may be broken, or the page may have moved.</p>
+    <div class="hero-cta" style="justify-content:center;margin:2rem 0 0">
+      <a href="/" class="btn btn-primary">Back home</a>
+      <a href="/blog.html" class="btn btn-outline">Read the blog</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
