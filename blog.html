@@ -5,54 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Blog by Ratna Jagadeesh Arava — writing on systems programming, graphics, web development, and AI.">
   <title>Blog — Ratna Jagadeesh Arava</title>
+  <link rel="canonical" href="https://ratnajagadeesharava.github.io/blog.html">
+  <meta property="og:title" content="Blog — Ratna Jagadeesh Arava">
+  <meta property="og:description" content="Writing on systems programming, graphics, web development, and AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ratnajagadeesharava.github.io/blog.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#08080f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8f8fc" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script>
+    // Apply the saved (or system) theme before first paint to avoid a flash
+    (function () {
+      var t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- Scroll Progress -->
 <div id="scroll-progress"></div>
 <!-- Toast -->
 <div id="toast-container"></div>
 <!-- Command Palette -->
-<div id="cmd-palette" class="cmd-overlay">
+<div id="cmd-palette" class="cmd-overlay" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
   <div class="cmd-box">
     <div class="cmd-input-wrap">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="cmd-input" placeholder="Search…" autocomplete="off">
+      <input type="text" id="cmd-input" aria-label="Search the site" placeholder="Search…" autocomplete="off">
       <span class="cmd-esc">ESC</span>
     </div>
-    <div id="cmd-results" class="cmd-results"></div>
+    <div id="cmd-results" class="cmd-results" role="listbox"></div>
   </div>
 </div>
 
 <!-- Nav -->
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Jagadeesh</a>
     <div class="nav-links" id="nav-links">
       <a href="index.html#about"      class="nav-link">About</a>
       <a href="index.html#experience" class="nav-link">Experience</a>
       <a href="index.html#projects"   class="nav-link">Projects</a>
-      <a href="blog.html"             class="nav-link active">Blog</a>
+      <a href="blog.html"             class="nav-link active" aria-current="page">Blog</a>
       <a href="index.html#skills"     class="nav-link">Skills</a>
       <a href="index.html#contact"    class="nav-link">Contact</a>
     </div>
     <div class="nav-actions">
       <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme"></button>
-      <button id="cmd-trigger" class="icon-btn" aria-label="Search" style="font-size:10px;color:var(--text-muted);gap:4px;width:auto;padding:0 .6rem">
+      <button id="cmd-trigger" class="icon-btn cmd-trigger" aria-label="Open command palette" title="Search">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <span style="font-size:11px;font-weight:500">⌘K</span>
+        <span class="cmd-kbd">⌘K</span>
       </button>
-      <button id="nav-toggle" class="icon-btn hamburger"><span></span><span></span><span></span></button>
+      <button id="nav-toggle" class="icon-btn hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
 <!-- Blog Page -->
-<main class="blog-page">
+<main id="main" class="blog-page">
   <div class="container">
     <div class="blog-hero reveal">
       <span class="section-tag">
@@ -63,13 +82,13 @@
       <p class="section-desc" style="max-width:520px">Thoughts on systems programming, computer graphics, frontend architecture, and the occasional career reflection.</p>
       <div class="blog-search-wrap">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="search" id="blog-search" placeholder="Search posts by title, tags, or keyword…">
+        <input type="search" id="blog-search" aria-label="Search posts" placeholder="Search posts by title, tags, or keyword…">
       </div>
     </div>
 
     <!-- Categories -->
-    <div class="blog-categories reveal">
-      <button class="blog-cat-btn active" data-cat="all">All Posts</button>
+    <div class="blog-categories reveal" role="group" aria-label="Filter by category">
+      <button class="blog-cat-btn active" data-cat="all" aria-pressed="true">All Posts</button>
       <button class="blog-cat-btn" data-cat="graphics">Graphics</button>
       <button class="blog-cat-btn" data-cat="web">Web &amp; Frontend</button>
       <button class="blog-cat-btn" data-cat="systems">Systems</button>
@@ -78,7 +97,7 @@
     </div>
 
     <!-- Blog List -->
-    <div id="blog-list" class="blog-list">
+    <div id="blog-list" class="blog-list" aria-live="polite">
       <div style="padding:3rem;text-align:center;color:var(--text-muted)">
         <div class="spinner"></div>
       </div>
@@ -97,7 +116,7 @@
         <a href="index.html#contact">Contact</a>
         <a href="https://github.com/ratnajagadeesharava" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <p class="footer-copy">&copy; 2026 Ratna Jagadeesh Arava</p>
+      <p class="footer-copy">&copy; <span class="footer-year">2026</span> Ratna Jagadeesh Arava</p>
     </div>
   </div>
 </footer>
@@ -106,7 +125,7 @@
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 
-<script src="js/main.js"></script>
-<script src="js/blog.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/blog.js" defer></script>
 </body>
 </html>

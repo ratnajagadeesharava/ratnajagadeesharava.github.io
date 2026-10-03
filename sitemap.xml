@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/</loc>
+  </url>
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/blog.html</loc>
+    <lastmod>2026-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/post.html?id=ray-tracer-rust</loc>
+    <lastmod>2026-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/post.html?id=rxjs-angular-patterns</loc>
+    <lastmod>2026-02-10</lastmod>
+  </url>
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/post.html?id=llm-systems-programmer</loc>
+    <lastmod>2026-01-05</lastmod>
+  </url>
+  <url>
+    <loc>https://ratnajagadeesharava.github.io/post.html?id=game-engine-lessons</loc>
+    <lastmod>2025-11-18</lastmod>
+  </url>
+</urlset>
